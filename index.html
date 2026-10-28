@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0d12" />
+  <title>hour cinema — Fjord</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="cinema-header">
+    <span class="cinema-brand">hour cinema</span>
+  </header>
+
+  <section class="filters" aria-label="Параметры сеанса">
+    <div class="movie-mini" aria-label="Информация о фильме">
+      <div class="movie-poster-mini" aria-hidden="true">
+        <img src="img/fjord.jpg" alt="Постер фильма Fjord" />
+      </div>
+      <div class="movie-mini-info">
+        <div class="movie-mini-title-row">
+          <strong>Fjord</strong>
+          <span class="movie-chip">18+</span>
+        </div>
+        <div class="movie-mini-meta">
+          2026 · Кристиан Мунджиу · драма · 2 ч 43 мин
+        </div>
+        <p class="movie-mini-desc">
+          В глухую норвежскую деревню на берегу фьорда переезжает семья из Румынии. Они быстро находят общий язык с соседями, а дети обеих семей становятся лучшими друзьями. Но идиллия рушится, когда румынская девочка приходит в школу с синяками и по деревне начинают ползти тревожные слухи.
+        </p>
+      </div>
+    </div>
+
+    <div class="filters-controls">
+      <label>
+        Сеанс:
+        <select id="sessionSelect">
+          <option value="1">12:00</option>
+          <option value="2">15:30</option>
+          <option value="3">19:00</option>
+          <option value="4">21:45</option>
+        </select>
+      </label>
+
+      <label>
+        Тип мест:
+        <select id="typeFilter">
+          <option value="all">Все</option>
+          <option value="standard">Стандарт</option>
+          <option value="sofa">Диваны</option>
+        </select>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" id="onlyFree" />
+        Только свободные
+      </label>
+
+      <button id="resetDemo" class="reset-demo" title="Сбросить демо" aria-label="Сбросить демо">↺</button>
+    </div>
+
+    <div class="view-switcher" role="tablist" aria-label="Вид схемы">
+      <button role="tab" type="button" id="viewScheme" aria-selected="true" data-view="scheme">Схема</button>
+      <button role="tab" type="button" id="viewList" aria-selected="false" data-view="list">Список</button>
+    </div>
+
+    <div class="legend">
+      <span class="dot free"></span> свободно
+      <span class="dot selected"></span> выбрано
+      <span class="dot occupied"></span> занято
+      <span class="dot mine"></span> ваши места
+    </div>
+  </section>
+
+  <div id="notice" class="notice" role="alert" hidden></div>
+
+  <main class="hall-wrap">
+    <div class="screen-arc">
+      <div class="screen-arc-inner"></div>
+      <span class="screen-label">ЭКРАН</span>
+    </div>
+
+    <div id="hall" class="hall" role="group" aria-label="Схема зала"></div>
+
+    <section id="seatListWrap" class="seat-list-wrap" aria-label="Список мест" hidden>
+
+      <div class="seat-list-help" aria-label="Подсказки по клавиатуре">
+        <span class="kbd-row"><kbd>Tab</kbd> как начать выбор</span>
+        <span class="kbd-row"><kbd>↑</kbd><kbd>↓</kbd> по списку</span>
+        <span class="kbd-row"><kbd>←</kbd><kbd>→</kbd> внутри ряда</span>
+        <span class="kbd-row"><kbd>PgUp</kbd><kbd>PgDn</kbd> ряд выше / ниже</span>
+        <span class="kbd-row"><kbd>Enter</kbd> выбрать / снять</span>
+        <span class="kbd-row muted">Занятые и мои места стрелками пропускаются</span>
+      </div>
+
+      <div id="seatList" class="seat-list"></div>
+    </section>
+  </main>
+
+  <aside class="cart" id="cart" aria-label="Выбранные места">
+    <h2>Выбранные места</h2>
+
+    <div id="cartTimer" class="cart-timer" hidden>
+      <span class="timer-icon">⏱</span>
+      <span>Резерв истекает через <strong id="cartTimerValue">10:00</strong></span>
+    </div>
+
+    <ul id="cartList"></ul>
+
+    <label class="student-toggle">
+      <input type="checkbox" id="studentDiscount" />
+      <span>Студенческий билет <em>(−100 ₽ за место)</em></span>
+    </label>
+
+    <div class="cart-total" id="cartTotal"></div>
+    <button id="confirmBooking" class="confirm" disabled>Подтвердить бронь</button>
+    <button id="clearCart" class="ghost">Очистить выбор</button>
+    <p class="demo-note">Учебное демо, реальная бронь не оформляется</p>
+  </aside>
+
+  <aside class="my-bookings" id="myBookings" aria-label="Мои брони">
+    <h2>Ваши брони</h2>
+    <ul id="bookingsList"></ul>
+    <p class="demo-note">Учебное демо, реальная бронь не оформляется</p>
+  </aside>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
